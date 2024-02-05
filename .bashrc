@@ -116,6 +116,11 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# homebrew start
+export HOME_BREW_HOME="/home/linuxbrew/.linuxbrew/bin"
+export PATH="$HOME_BREW_HOME:$PATH"
+# homebrew end
+
 # use vi keybindings in the terminal
 set -o vi
 #set default editor to nvim
