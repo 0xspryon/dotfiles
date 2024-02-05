@@ -115,3 +115,11 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+# use vi keybindings in the terminal
+set -o vi
+#set default editor to nvim
+export EDITOR=nvim
+
+eval "$(starship init bash)"
+
