@@ -127,6 +127,7 @@ set -o vi
 export EDITOR=nvim
 
 eval "$(starship init bash)"
+eval "$(zoxide init bash)"
 
 
 export NVM_DIR="$HOME/.nvm"
