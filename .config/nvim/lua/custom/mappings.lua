@@ -3,8 +3,6 @@ local M = {}
 
 M.general = {
   n = {
-    [";"] = { ":", "enter command mode", opts = { nowait = true } },
-
     --  format with conform
     ["<leader>fm"] = {
       function()
@@ -19,6 +17,10 @@ M.general = {
     ["<leader>q"] = { "@q", "Play macro at register 'q'"},
     ["<leader>Q"] = { "qq", "Start registering macro at register 'q'"},
     ["<S-u>"] = { "<C-r>", "Redo with capital 'U'"},
+    ["\\q"] = { ":wq<CR>", "Write changes and quit"},
+    ["\\Q"] = { ":q!<CR>", "Quite without writing changes"},
+    ["\\w"] = { ":w<CR>", "Write changes"},
+    -- [";"] = { ":", "enter command mode", opts = { nowait = true } },
   },
   v = {
     [">"] = { ">gv", "Indents right and holds current selection so that we can continue indentation"},
