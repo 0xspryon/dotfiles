@@ -123,6 +123,9 @@ export PATH="$HOME_BREW_HOME:$PATH"
 
 # use vi keybindings in the terminal
 set -o vi
+bind -m vi-command 'Control-l: clear-screen'
+bind -m vi-insert 'Control-l: clear-screen'
+
 #set default editor to nvim
 export EDITOR=nvim
 
