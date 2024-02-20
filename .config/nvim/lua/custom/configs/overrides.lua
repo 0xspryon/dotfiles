@@ -9,9 +9,23 @@ M.treesitter = {
     "javascript",
     "typescript",
     "tsx",
-    "c",
     "markdown",
     "markdown_inline",
+    "dockerfile",
+    "gitignore",
+    "git_config",
+    "git_rebase",
+    "gitcommit",
+    "haskell",
+    "json",
+    "json5",
+    "properties",
+    "python",
+    "rust",
+    "scss",
+    "solidity",
+    "svelte",
+    "yaml",
   },
   indent = {
     enable = true,
@@ -33,10 +47,16 @@ M.mason = {
     "typescript-language-server",
     "deno",
     "prettier",
+    "svelte",
+    "tailwindcss",
+    "emmet_language_server",
 
-    -- c/cpp stuff
-    "clangd",
-    "clang-format",
+    -- docker stuff
+    "docker_compose_language_service",
+    "dockerls",
+
+    -- rust stuff
+    "rust-analyzer",
 
     -- shell stuff
     "shfmt",
