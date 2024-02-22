@@ -1,8 +1,18 @@
----@type MappingsTable
+--@type MappingsTable
 local M = {}
+
+-- In order to disable a default keymap, use
+M.disabled = {
+  n = {
+      ["<C-n>"] = ""
+  }
+}
 
 M.general = {
   n = {
+    -- toggle file explorer
+    ["<leader>e"] = { "<cmd> NvimTreeToggle <CR>", "Toggle nvimtree" },
+
     --  format with conform
     ["<leader>fm"] = {
       function()
