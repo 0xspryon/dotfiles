@@ -1,3 +1,48 @@
 [window]
 decorations = "None"
 opacity = 0.8
+
+# Colors (Poimandres)
+[colors.primary]
+background = "0x1b1e28"
+foreground = "0xa6accd"
+
+[colors.cursor]
+text = "CellBackground"
+cursor = "CellForeground"
+
+# Vi mode cursor colors
+#
+# Colors for the cursor when the vi mode is active.
+#
+# Allowed values are CellForeground/CellBackground, which reference the
+# affected cell, or hexadecimal colors like #ff00ff.
+[colors.vi_mode_cursor]
+text = "CellBackground"
+cursor = "CellForeground"
+
+# Colors used for the search bar and match highlighting.
+# Allowed values are CellForeground/CellBackground, which reference the
+# affected cell, or hexadecimal colors like #ff00ff.
+[colors.search.matches]
+foreground = "0x1b1e28"
+background = "0xadd7ff"
+
+[colors.search.focused_match]
+foreground = "0x1b1e28"
+background = "0xadd7ff"
+
+[colors.footer_bar]
+foreground = "0x1b1e28"
+background = "0xadd7ff"
+
+# Selection colors
+#
+# Colors which should be used to draw the selection area.
+#
+# Allowed values are CellForeground/CellBackground, which reference the
+# affected cell, or hexadecimal colors like #ff00ff.
+[colors.selection]
+text = "CellForeground"
+background = "0x303340"
+
