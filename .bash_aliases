@@ -16,6 +16,7 @@ alias l.='eza -a | egrep "^\."'
 # navigating backwards
 alias b='cd ..'
 alias bb='cd ../..'
+alias -='cd -'
 
 # adding flags
 alias df='df -h'                          # human-readable sizes
