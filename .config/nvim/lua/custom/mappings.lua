@@ -4,7 +4,7 @@ local M = {}
 -- In order to disable a default keymap, use
 M.disabled = {
   n = {
-      ["<C-n>"] = ""
+      ["<C-n>"] = "",
   }
 }
 

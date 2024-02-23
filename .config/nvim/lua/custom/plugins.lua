@@ -47,6 +47,13 @@ local plugins = {
     end,
   },
 
+  {
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    opts = overrides.flash.opts,
+    -- stylua: ignore
+    keys = overrides.flash.keys,
+  }
   -- To make a plugin not be loaded
   -- {
   --   "NvChad/nvim-colorizer.lua",
