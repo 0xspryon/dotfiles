@@ -4,7 +4,7 @@ alias gu-last="git log -1 HEAD"
 
 alias vim="nvim"
 
-alias yoao="/opt/session/session-desktop-linux-x86_64-1.11.5.AppImage"
+alias yoao="/opt/session/session-desktop-linux-x86_64-1.12.0.AppImage"
 
 # Changing "ls" to "eza"
 alias ls='eza -al --color=always --group-directories-first' # my preferred listing
