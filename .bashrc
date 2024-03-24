@@ -105,6 +105,14 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+# here I define the persisten env variables that I intend to have loaded
+# in my shell but I neccessarily do not want to have in my bashrc.
+# This is mostly for dev work
+
+if [ -f ~/.bash_env_variables ]; then
+    . ~/.bash_env_variables
+fi
+
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -120,6 +128,10 @@ fi
 export HOME_BREW_HOME="/home/linuxbrew/.linuxbrew/bin"
 export PATH="$HOME_BREW_HOME:$PATH"
 # homebrew end
+
+# vyper system wide installation
+export PATH="$PATH:/home/spryon/.local/bin"
+# end vyper system wide installation
 
 # use vi keybindings in the terminal
 set -o vi
@@ -143,3 +155,5 @@ export NVM_DIR="$HOME/.nvm"
 . "$HOME/.cargo/env"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+export PATH="$PATH:/home/spryon/.foundry/bin"
