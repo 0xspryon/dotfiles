@@ -54,24 +54,6 @@ local plugins = {
     -- stylua: ignore
     keys = overrides.flash.keys,
   },
-
-  {
-    'olivercederborg/poimandres.nvim',
-    lazy = false,
-    priority = 1000,
-    config = function()
-      require('poimandres').setup {
-        -- leave this setup function empty for default config
-        -- or refer to the configuration section
-        -- for configuration options
-      }
-    end,
-
-    -- optionally set the colorscheme within lazy config
-    init = function()
-      vim.cmd("colorscheme poimandres")
-    end
-  },
   {
     "kylechui/nvim-surround",
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
@@ -82,6 +64,23 @@ local plugins = {
         })
     end
   },
+  {
+    "ThePrimeagen/harpoon",
+    event = "VeryLazy",
+    branch = "harpoon2",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require "custom.configs.harpoon"
+    end,
+  },
+  {
+    'kevinhwang91/nvim-ufo',
+    event = "VeryLazy",
+    dependencies = { 'kevinhwang91/promise-async' },
+    config = function()
+      require "custom.configs.nvim-ufo"
+    end,
+  }
   -- To make a plugin not be loaded
   -- {
   --   "NvChad/nvim-colorizer.lua",

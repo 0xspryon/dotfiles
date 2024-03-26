@@ -30,7 +30,27 @@ M.general = {
     ["\\q"] = { ":wq<CR>", "Write changes and quit"},
     ["\\Q"] = { ":q!<CR>", "Quite without writing changes"},
     ["\\w"] = { ":w<CR>", "Write changes"},
-    -- [";"] = { ":", "enter command mode", opts = { nowait = true } },
+    ["zR"] = {
+      function()
+        require('ufo').openAllFolds()
+      end,
+      "Open all Folds",
+    },
+    ["zM"] = {
+      function()
+        require('ufo').closeAllFolds()
+      end,
+      "Close all Folds",
+    },
+    ["zk"] = {
+      function()
+        local winid = require('ufo').peekFoldedLinesUnderCursor()
+        if not winid then
+          vim.lsp.buf.hover()
+        end
+      end,
+      "Peek Fold",
+    },
   },
   v = {
     [">"] = { ">gv", "Indents right and holds current selection so that we can continue indentation"},

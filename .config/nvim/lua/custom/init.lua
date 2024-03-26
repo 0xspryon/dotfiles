@@ -13,3 +13,10 @@ opt.relativenumber = true
 opt.numberwidth = 4
 opt.tabstop = 2
 opt.scrolloff = 8
+
+-- nvim-ufo
+opt.foldcolumn = '0' -- '0' is not bad
+opt.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+opt.foldlevelstart = 99
+opt.foldnestmax = 4
+opt.foldenable = true
