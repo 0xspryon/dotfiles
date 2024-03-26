@@ -20,8 +20,8 @@ M.ui = {
 "                                                             ",
     },
   },
-  theme = "onedark",
-  theme_toggle = { "onedark", "one_light" },
+  theme = "falcon",
+  theme_toggle = { "falcon", "one_light" },
 
   hl_override = highlights.override,
   hl_add = highlights.add,
