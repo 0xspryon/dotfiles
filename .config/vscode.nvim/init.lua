@@ -224,6 +224,38 @@ require('lazy').setup({
         })
     end
   },
+  {
+      'glacambre/firenvim',
+
+      -- Lazy load firenvim
+      -- Explanation: https://github.com/folke/lazy.nvim/discussions/463#discussioncomment-4819297
+      lazy = not vim.g.started_by_firenvim,
+      build = function()
+          vim.fn["firenvim#install"](0)
+      end,
+      config = function()
+        if vim.g.started_by_firenvim == true then
+          vim.api.nvim_create_autocmd({'TextChanged', 'TextChangedI'}, {
+              nested = true,
+              command = "write"
+          })
+          vim.g.firenvim_config = {
+              globalSettings = { alt = "all", cmdlineTimeout = 3000 },
+              localSettings = {
+                  [".*"] = {
+                      cmdline  = "neovim",
+                      content  = "text",
+                      priority = 0,
+                      selector = 'textarea:not([readonly], [aria-readonly]), div[role="textbox"]',
+                      takeover = "never"
+                  }
+              }
+          }
+          vim.keymap.set("n", "<Esc><Esc>", "<Cmd>call firenvim#focus_page()<CR>", {})
+          vim.keymap.set("n", "<C-z>", "<Cmd>call firenvim#hide_frame()<CR>", {})
+        end
+      end
+  }
 })
 
 

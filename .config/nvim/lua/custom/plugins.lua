@@ -80,7 +80,17 @@ local plugins = {
     config = function()
       require "custom.configs.nvim-ufo"
     end,
-  }
+  },
+  -- {
+  --     'glacambre/firenvim',
+  --
+  --     -- Lazy load firenvim
+  --     -- Explanation: https://github.com/folke/lazy.nvim/discussions/463#discussioncomment-4819297
+  --     lazy = not vim.g.started_by_firenvim,
+  --     build = function()
+  --         vim.fn["firenvim#install"](0)
+  --     end
+  -- }
   -- To make a plugin not be loaded
   -- {
   --   "NvChad/nvim-colorizer.lua",
