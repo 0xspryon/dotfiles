@@ -30,6 +30,7 @@ M.general = {
     ["\\q"] = { ":wq<CR>", "Write changes and quit"},
     ["\\Q"] = { ":q!<CR>", "Quite without writing changes"},
     ["\\w"] = { ":w<CR>", "Write changes"},
+    ["Q"] = { "@jj", "Play the macro at `j` and go to the line below"},
     ["zR"] = {
       function()
         require('ufo').openAllFolds()
@@ -60,6 +61,9 @@ M.general = {
     ["gl"] = { "$", "Go to end of line"},
     ["gh"] = { "^", "Go to first non empty character of line"},
     ["p"] = { '"_dP', "paste in visual mode without overwridding the default buffer"},
+  },
+  x = {
+    ["Q"] = { ":norm @j<CR>", "Play the macro at `j` on the current selection"},
   },
 }
 
