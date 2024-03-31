@@ -38,7 +38,7 @@ opt.breakindent = true
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
 opt.ignorecase = true
 opt.smartcase = true
-opt.mouse = "a"
+opt.mouse = ""
 
 -- disable nvim intro
 opt.shortmess:append "sI"
@@ -80,12 +80,13 @@ opt.shiftwidth = 2
 opt.smartindent = true
 opt.tabstop = 2
 opt.softtabstop = 2
-
--- [[ Basic Keymaps ]]
---  See `:help vim.keymap.set()`
+opt.backup = false
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 opt.hlsearch = true
+
+-- [[ Basic Keymaps ]]
+--  See `:help vim.keymap.set()`
 
 -- Normal mode
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = "Clear highlights"})
@@ -98,6 +99,7 @@ vim.keymap.set('n', '<leader>Q', 'qq', { desc = 'Start registering macro at regi
 vim.keymap.set('n', '<S-u>', '<C-r>', { desc = 'Redo' })
 vim.keymap.set('n', '<C-s>', '<cmd> w <CR>', { desc = 'Save file' })
 vim.keymap.set('n', '<C-c>', '<cmd> %y+ <CR>', { desc = 'Copy whole file' })
+vim.keymap.set('n', 'Q', '@jj', { desc = 'Play the macro at `j` and go to the line below' })
 
 -- TIP: Disable arrow keys in normal mode
 vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
@@ -114,6 +116,9 @@ vim.keymap.set('v', 'gl', "$", { desc = 'Go to end of line' })
 vim.keymap.set('v', 'gh', "^", { desc = 'Go to first non empty character of line' })
 vim.keymap.set('v', 'p', "_dp", { desc = 'Past in visual mode without overwriting the default buffer' })
 
+-- command mode
+vim.keymap.set('x', 'Q', ":norm @j<CR>", { desc = 'Play the macro at `j` on the current selection' })
+
 -- Insert mode
 --
 -- Navigate within inset mode
@@ -121,15 +126,6 @@ vim.keymap.set('i', '<C-h>', '<Left>', { desc = "Move left"})
 vim.keymap.set('i', '<C-l>', '<Right>', { desc = "Move right"})
 vim.keymap.set('i', '<C-j>', '<Down>', { desc = "Move down"})
 vim.keymap.set('i', '<C-k>', '<Up>', { desc = "Move up"})
-
--- Keybinds to make split navigation easier.
---  Use CTRL+<hjkl> to switch between windows
---
---  See `:help wincmd` for a list of all window commands
-vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
