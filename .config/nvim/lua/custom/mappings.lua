@@ -31,6 +31,9 @@ M.general = {
     ["\\Q"] = { ":q!<CR>", "Quite without writing changes"},
     ["\\w"] = { ":w<CR>", "Write changes"},
     ["Q"] = { "@jj", "Play the macro at `j` and go to the line below"},
+    ["<leader>z"] = { '"zy', "Yank into the `z` register"},
+    ["<leader>zz"] = { '"zyy', "Yank into the `z` register"},
+    ["<leader>Z"] = { '"zY', "Yank into the `z` register"},
     ["zR"] = {
       function()
         require('ufo').openAllFolds()
@@ -60,7 +63,9 @@ M.general = {
     ["gk"] = { "<ESC>'>V'<-2", "Set selection direction to upwards ⬆️ "},
     ["gl"] = { "$", "Go to end of line"},
     ["gh"] = { "^", "Go to first non empty character of line"},
-    ["p"] = { '"_dP', "paste in visual mode without overwridding the default buffer"},
+    ["p"] = { '"_dp', "paste in visual mode without overwridding the default buffer"},
+    ["P"] = { '"_dP', "paste in visual mode without overwridding the default buffer"},
+    ["<leader>z"] = { '"zy', "Yank into the `z` register"},
   },
   x = {
     ["Q"] = { ":norm @j<CR>", "Play the macro at `j` on the current selection"},

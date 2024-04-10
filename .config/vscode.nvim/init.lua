@@ -100,6 +100,9 @@ vim.keymap.set('n', '<S-u>', '<C-r>', { desc = 'Redo' })
 vim.keymap.set('n', '<C-s>', '<cmd> w <CR>', { desc = 'Save file' })
 vim.keymap.set('n', '<C-c>', '<cmd> %y+ <CR>', { desc = 'Copy whole file' })
 vim.keymap.set('n', 'Q', '@jj', { desc = 'Play the macro at `j` and go to the line below' })
+vim.keymap.set('n', '<leader>z', '"zy', { desc = 'Yank into the `z` register' })
+vim.keymap.set('n', '<leader>zz', '"zyy', { desc = 'Yank into the `z` register' })
+vim.keymap.set('n', '<leader>Z', '"zY', { desc = 'Yank into the `z` register' })
 
 -- TIP: Disable arrow keys in normal mode
 vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
@@ -114,7 +117,10 @@ vim.keymap.set('v', 'gj', "<ESC>'<V'>+1", { desc = 'Set selection direction to d
 vim.keymap.set('v', 'gk', "<ESC>'>V'<-2", { desc = 'Set selection direction to upwards' })
 vim.keymap.set('v', 'gl', "$", { desc = 'Go to end of line' })
 vim.keymap.set('v', 'gh', "^", { desc = 'Go to first non empty character of line' })
-vim.keymap.set('v', 'p', "_dp", { desc = 'Past in visual mode without overwriting the default buffer' })
+vim.keymap.set('v', 'p', '"_dp', { desc = 'Past in visual mode without overwriting the default buffer' })
+vim.keymap.set('v', 'P', '"_dP', { desc = 'Past in visual mode without overwriting the default buffer' })
+vim.keymap.set('v', '<leader>z', '"zy', { desc = 'Yank into the `z` register' })
+vim.keymap.set('v', '<leader>Z', '"zY', { desc = 'Yank into the `z` register' })
 
 -- command mode
 vim.keymap.set('x', 'Q', ":norm @j<CR>", { desc = 'Play the macro at `j` on the current selection' })
