@@ -2,7 +2,7 @@
 alias gu-log="git log --graph --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%an%C(reset)%C(bold yellow)%d%C(reset) %C(dim white)- %s%C(reset)' --all"
 alias gu-last="git log -1 HEAD"
 
-alias yoao="/opt/session/session-desktop-linux-x86_64-1.12.0.AppImage"
+alias yoao="/opt/session/session-desktop-linux.AppImage"
 
 # Changing "ls" to "eza"
 alias ls='eza -al --color=always --group-directories-first' # my preferred listing
@@ -14,6 +14,7 @@ alias l.='eza -a | egrep "^\."'
 # navigating backwards
 alias b='cd ..'
 alias bb='cd ../..'
+alias bbb='cd ../../..'
 alias b-='cd -'
 
 # adding flags
