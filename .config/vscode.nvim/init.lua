@@ -103,6 +103,7 @@ vim.keymap.set('n', 'Q', '@jj', { desc = 'Play the macro at `j` and go to the li
 vim.keymap.set('n', '<leader>z', '"zy', { desc = 'Yank into the `z` register' })
 vim.keymap.set('n', '<leader>zz', '"zyy', { desc = 'Yank into the `z` register' })
 vim.keymap.set('n', '<leader>Z', '"zY', { desc = 'Yank into the `z` register' })
+vim.keymap.set('n', '<leader>r', '"', { desc = 'Semicolon to select a register' })
 
 -- TIP: Disable arrow keys in normal mode
 vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
@@ -121,6 +122,7 @@ vim.keymap.set('v', 'p', '"_dp', { desc = 'Past in visual mode without overwriti
 vim.keymap.set('v', 'P', '"_dP', { desc = 'Past in visual mode without overwriting the default buffer' })
 vim.keymap.set('v', '<leader>z', '"zy', { desc = 'Yank into the `z` register' })
 vim.keymap.set('v', '<leader>Z', '"zY', { desc = 'Yank into the `z` register' })
+vim.keymap.set('v', '<leader>r', '"', { desc = 'Semicolon to select a register' })
 
 -- command mode
 vim.keymap.set('x', 'Q', ":norm @j<CR>", { desc = 'Play the macro at `j` on the current selection' })
