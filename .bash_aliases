@@ -3,6 +3,7 @@ alias gu-log="git log --graph --format=format:'%C(bold blue)%h%C(reset) - %C(bol
 alias gu-last="git log -1 HEAD"
 
 alias yoao="/opt/session/session-desktop-linux.AppImage"
+alias YOAO="yoao"
 
 # Changing "ls" to "eza"
 alias ls='eza -al --color=always --group-directories-first' # my preferred listing
@@ -11,6 +12,8 @@ alias ll='eza -l --color=always --group-directories-first'  # long format
 alias lt='eza -aT --color=always --group-directories-first' # tree listing
 alias l.='eza -a | egrep "^\."'
 
+# changing cat to bat
+alias cat="bat --color=always"
 # navigating backwards
 alias b='cd ..'
 alias bb='cd ../..'
@@ -35,9 +38,13 @@ alias push='git push origin'
 alias stat='git status'  # 'status' is protected name so using 'stat' instead
 alias tag='git tag'
 alias newtag='git tag -a'
+alias pswb='git perc-setup-worktree-branch'
 
 # nvim
 alias vim="nvim"
+alias nc='nvim ~/.config/nvim'
+alias ncc='nvim ~/.config/vscode.nvim'
+alias nca='nvim ~/.bash_aliases'
+alias ncb='nvim ~/.bashrc'
 # custom made configurations for the nvim instance of vscode
 alias vscode-nvim='NVIM_APPNAME="vscode.nvim" nvim'
-
