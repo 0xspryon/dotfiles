@@ -95,7 +95,7 @@ vim.keymap.set('n', '<leader>W', 'viW', { desc = 'Quickly select one "WORD"' })
 vim.keymap.set('n', 'gl', '$', { desc = 'Go to eol' })
 vim.keymap.set('n', 'gh', '^', { desc = 'Go to first non empty character of line' })
 vim.keymap.set('n', '<leader>q', '@q', { desc = 'Play macro at register "q"' })
-vim.keymap.set('n', '<leader>Q', 'qq', { desc = 'Start registering macro at register "q"' })
+vim.keymap.set('n', '<leader><S-q>', 'qq', { desc = 'Start registering macro at register "q"' })
 vim.keymap.set('n', '<S-u>', '<C-r>', { desc = 'Redo' })
 vim.keymap.set('n', '<C-s>', '<cmd> w <CR>', { desc = 'Save file' })
 vim.keymap.set('n', '<C-c>', '<cmd> %y+ <CR>', { desc = 'Copy whole file' })
@@ -110,6 +110,10 @@ vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
 vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
 vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
 vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
+vim.keymap.set('i', '<left>', '<cmd>echo "Use <ctr>+h to move!!"<CR>')
+vim.keymap.set('i', '<right>', '<cmd>echo "Use <ctr>+l to move!!"<CR>')
+vim.keymap.set('i', '<up>', '<cmd>echo "Use <ctr>+k to move!!"<CR>')
+vim.keymap.set('i', '<down>', '<cmd>echo "Use <ctr>+j to move!!"<CR>')
 
 -- Visual mode
 vim.keymap.set('v', '>', '>gv', { desc = 'Indent right and holds current selection so that we can continue indentation' })
@@ -202,13 +206,6 @@ require('lazy').setup({
   {
     "folke/flash.nvim",
     event = "VeryLazy",
-    opts = {
-      modes = {
-        char = {
-          jump_labels = true
-        }
-      }
-    },
     -- stylua: ignore
     keys = {
       { "gs", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
@@ -217,6 +214,12 @@ require('lazy').setup({
       { "gR", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
       { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
     },
+  },
+  {
+    'vscode-neovim/vscode-multi-cursor.nvim',
+    event = 'VeryLazy',
+    cond = not not vim.g.vscode,
+    opts = {},
   },
   {
     "kylechui/nvim-surround",
