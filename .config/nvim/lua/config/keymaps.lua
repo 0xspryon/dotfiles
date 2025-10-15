@@ -7,6 +7,7 @@ local map = vim.keymap.set
 map("n", "gH", "0", { desc = "Go to the start of the line", remap = true })
 map("n", "gh", "^", { desc = "Go to first non-empty character of the line", remap = true })
 map("n", "gl", "$", { desc = "Go to the last character of the line", remap = true })
+map("n", "<leader>bn", "<cmd>enew<cr>", { desc = "Create empty buffer in current window", remap = true })
 map("i", "jj", "<esc>", { desc = "Switch to normal mode", remap = true })
 map("i", "jk", "<cmd>w<cr><esc>", { desc = "Switch to normal mode and save file", remap = true })
 map("i", "<C-l>", "<C-o>l", { desc = "Switch to normal mode", remap = true })
@@ -40,11 +41,14 @@ map("n", "<leader>saf", function()
 end, { desc = "Telescope live grep in the findings folder", remap = true })
 
 -- NVIM-UFO
-vim.keymap.set("n", "zR", require("ufo").openAllFolds, { desc = "Open all folds", remap = true })
-vim.keymap.set("n", "zM", require("ufo").closeAllFolds, { desc = "Close all folds", remap = true })
-vim.keymap.set("n", "zk", function()
+map("n", "zR", require("ufo").openAllFolds, { desc = "Open all folds", remap = true })
+map("n", "zM", require("ufo").closeAllFolds, { desc = "Close all folds", remap = true })
+map("n", "zk", function()
   local winid = require("ufo").peekFoldedLinesUnderCursor()
   if not winid then
     vim.lsp.buf.hover()
   end
 end, { desc = "Peek folded lines under cursor", remap = true })
+
+-- NVIM-OUTLINE
+map("n", "<leader>o", "<cmd>Outline<CR>", { desc = "Open code outline" })

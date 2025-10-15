@@ -16,6 +16,7 @@ Clone a bare git repo and set up environment for working comfortably and exclusi
 Available options:
 
 -h, --help      Print this help and exit
+-b, --branch    Specify the branch to base worktrees on (default: main)
 -v, --verbose   Print script debug info
 -l, --location  Location of the bare repo contents (default: .bare)
 EOF
@@ -47,6 +48,7 @@ die() {
 
 parse_params() {
   location='.bare'
+  branch='main'
 
   while :; do
     case "${1-}" in
@@ -55,6 +57,10 @@ parse_params() {
     --no-color) NO_COLOR=1 ;;
     -l | --location)
       location="${2-}"
+      shift
+      ;;
+    -b | --branch)
+      branch="${2-}"
       shift
       ;;
     -?*) die "Unknown option: $1" ;;
@@ -88,9 +94,9 @@ echo "gitdir: ./$location" >.git
 # comment this out in case it fails to add the default branch and try to figure something out eventually
 msg "${YELLOW}Creating woktree for default branches...${NOFORMAT}"
 git fetch
-git worktree add main
-git worktree add -b audit audit origin/main
-git worktree add -b test test origin/main
+git worktree add "$branch"
+git worktree add -b w3s_audit audit "origin/$branch"
+git worktree add -b w3s_test test "origin/$branch"
 mkdir ./audit/findings
 touch ./audit/findings/README.md
 

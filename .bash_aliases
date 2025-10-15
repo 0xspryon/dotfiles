@@ -10,7 +10,6 @@ alias instally="find . -name '*.AppImage' | fzf | xargs -I {} -n 1 sh -c 'chmod 
 alias winbox="/opt/WinBox_Linux/WinBox"
 alias WINBOX="winbox"
 alias wth="curl wttr.in/yaounde"
-alias vim="nvim"
 alias zero="sudo zerotier-cli"
 
 # Changing "ls" to "eza"
@@ -19,6 +18,9 @@ alias la='eza -a --color=always --group-directories-first'  # all files and dirs
 alias ll='eza -l --color=always --group-directories-first'  # long format
 alias lt='eza -aT --color=always --group-directories-first' # tree listing
 alias l.='eza -a | egrep "^\."'
+
+# changing cd to `z`
+alias cd="z"
 
 # changing cat to bat
 alias cat="bat --color=always"
@@ -41,11 +43,7 @@ alias addall='git add .'
 alias branch='git branch'
 alias checkout='git checkout'
 alias clone='git clone'
-alias commit='git commit -m'
 alias fetch='git fetch'
-alias pull='git pull origin'
-alias push='git push origin'
-alias stat='git status' # 'status' is protected name so using 'stat' instead
 alias g_undo='git reset --soft HEAD~1'
 alias g_undo_s_2='git reset --soft HEAD~2'
 alias g_undo_s_3='git reset --soft HEAD~3'
@@ -65,3 +63,14 @@ alias nca='nvim ~/.bash_aliases'
 alias ncb='nvim ~/.bashrc'
 # custom made configurations for the nvim instance of vscode
 alias vscode-nvim='NVIM_APPNAME="vscode.nvim" nvim'
+
+# lazygit and lazydocker
+alias lzg="lazygit"
+alias lzd="lazydocker"
+
+# hashcore-toolkit
+alias vinish=/opt/hashcore-toolkit/hashcore-toolkit
+alias cvinish='tailscale up --accept-routes && vinish'
+
+# vps
+alias sw="ssh 'spring@173.212.216.215'"
