@@ -5,6 +5,7 @@ alias gu-last="git log -1 HEAD"
 alias yoao="/opt/session/session-desktop-linux.AppImage"
 alias YOAO="yoao"
 alias shn="shutdown now"
+alias shr="shutdown now -r"
 alias installd="find . -maxdepth 1 -name '*.deb' | fzf | xargs -I {} -n 1 sh -c 'sudo DEBIAN_FRONTEND=noninteractive apt install -y ./{} && rm {}'"
 alias instally="find . -name '*.AppImage' | fzf | xargs -I {} -n 1 sh -c 'chmod +x {} && sudo mv {} /opt/session/session-desktop-linux.AppImage'"
 alias winbox="/opt/WinBox_Linux/WinBox"
@@ -74,3 +75,6 @@ alias cvinish='tailscale up --accept-routes && vinish'
 
 # vps
 alias sw="ssh 'spring@173.212.216.215'"
+
+# python => python3
+alias python="python3"
