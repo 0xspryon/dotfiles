@@ -9,7 +9,9 @@ usage() {
   cat <<EOF # remove the space between << and EOF, this is due to web plugin issue
 Usage: $(
     basename "${BASH_SOURCE[0]}"
-  ) [-h] [-v] [-l] repository
+  ) [-h] [-v] [-l] [-b] repository
+
+example: git bare-clone -b develop git.hub.com:username/repo.git
 
 Clone a bare git repo and set up environment for working comfortably and exclusively from worktrees.
 
@@ -94,10 +96,7 @@ echo "gitdir: ./$location" >.git
 # comment this out in case it fails to add the default branch and try to figure something out eventually
 msg "${YELLOW}Creating woktree for default branches...${NOFORMAT}"
 git fetch
+msg "${YELLOW}Creating woktree for $branch${NOFORMAT}"
 git worktree add "$branch"
-git worktree add -b w3s_audit audit "origin/$branch"
-git worktree add -b w3s_test test "origin/$branch"
-mkdir ./audit/findings
-touch ./audit/findings/README.md
 
 msg "${GREEN}Success.${NOFORMAT}"

@@ -180,3 +180,8 @@ export GO_PATH=/usr/local/go/bin
 export GO_BIN_PATH=/home/spryon/go/bin
 export PATH=$PATH:$GO_PATH:$GO_BIN_PATH
 # go end
+
+# BunVM
+export BUNVM_DIR="/home/spryon/.bunvm"
+source "$BUNVM_DIR/bunvm.sh"
+

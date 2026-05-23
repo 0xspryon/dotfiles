@@ -73,8 +73,11 @@ alias lzd="lazydocker"
 alias vinish=/opt/hashcore-toolkit/hashcore-toolkit
 alias cvinish='tailscale up --accept-routes && vinish'
 
+# opencode-ai
+alias oc="opencode"
+
 # vps
-alias sw="ssh 'spring@173.212.216.215'"
+alias sw="ssh spring@46.225.62.215"
 
 # python => python3
 alias python="python3"
