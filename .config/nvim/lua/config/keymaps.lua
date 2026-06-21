@@ -40,15 +40,5 @@ map("n", "<leader>saf", function()
   require("telescope.builtin").live_grep({ cwd = "./findings" })
 end, { desc = "Telescope live grep in the findings folder", remap = true })
 
--- NVIM-UFO
-map("n", "zR", require("ufo").openAllFolds, { desc = "Open all folds", remap = true })
-map("n", "zM", require("ufo").closeAllFolds, { desc = "Close all folds", remap = true })
-map("n", "zk", function()
-  local winid = require("ufo").peekFoldedLinesUnderCursor()
-  if not winid then
-    vim.lsp.buf.hover()
-  end
-end, { desc = "Peek folded lines under cursor", remap = true })
-
 -- NVIM-OUTLINE
 map("n", "<leader>o", "<cmd>Outline<CR>", { desc = "Open code outline" })

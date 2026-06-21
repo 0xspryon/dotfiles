@@ -1,0 +1,63 @@
+theme = "custom"
+mode = "auto"
+line_numbers = true
+wrap_lines = false
+
+[custom_theme]
+base = "github-dark-default"
+label = "Poimandres"
+
+background = "#1B1E28"
+panel = "#202430"
+panelAlt = "#303340"
+border = "#33394D"
+
+text = "#E4F0FB"
+muted = "#A6ACCD"
+accent = "#ADD7FF"
+accentMuted = "#303340"
+
+addedBg = "#1F3A36"
+removedBg = "#3A2236"
+movedAddedBg = "#233445"
+movedRemovedBg = "#35273F"
+
+contextBg = "#1B1E28"
+contextContentBg = "#1B1E28"
+addedContentBg = "#25473F"
+removedContentBg = "#4A2840"
+
+addedSignColor = "#5DE4C7"
+removedSignColor = "#D0679D"
+
+lineNumberBg = "#1B1E28"
+lineNumberFg = "#767C9D"
+selectedHunk = "#303340"
+
+badgeAdded = "#5DE4C7"
+badgeRemoved = "#D0679D"
+badgeNeutral = "#A6ACCD"
+
+fileNew = "#5DE4C7"
+fileDeleted = "#D0679D"
+fileRenamed = "#89DDFF"
+fileModified = "#ADD7FF"
+fileUntracked = "#FFFAC2"
+
+noteBorder = "#F087BD"
+noteBackground = "#202430"
+noteTitleBackground = "#303340"
+noteTitleText = "#E4F0FB"
+
+[custom_theme.syntax]
+default = "#E4F0FB"
+keyword = "#ADD7FF"
+string = "#5DE4C7"
+comment = "#767C9D"
+number = "#FFFAC2"
+function = "#89DDFF"
+property = "#F087BD"
+type = "#ADD7FF"
+variable = "#E4F0FB"
+operator = "#91B4D5"
+punctuation = "#A6ACCD"

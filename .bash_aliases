@@ -70,11 +70,14 @@ alias lzg="lazygit"
 alias lzd="lazydocker"
 
 # hashcore-toolkit
-alias vinish=/opt/hashcore-toolkit/hashcore-toolkit
-alias cvinish='tailscale up --accept-routes && vinish'
+alias vinish=/home/spryon/.local/bin/hashcore-toolkit/hashcore-toolkit
+alias cvinish='sudo netclient connect baf-poultry && vinish'
 
 # opencode-ai
 alias oc="opencode"
+
+# kitty
+alias fs="kitten @ action toggle_fullscreen"
 
 # vps
 alias sw="ssh spring@46.225.62.215"

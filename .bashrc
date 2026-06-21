@@ -68,7 +68,8 @@ case "$TERM" in
 xterm* | rxvt*)
   PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
   ;;
-*) ;;
+*)
+  ;;
 esac
 
 # enable color support of ls and also add handy aliases
@@ -95,15 +96,6 @@ alias l='ls -CF'
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-# Custom function definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_functions, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
-if [ -f ~/.bash_functions ]; then
-  . ~/.bash_functions
-fi
-
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
@@ -121,6 +113,15 @@ if [ -f ~/.bash_env_variables ]; then
   . ~/.bash_env_variables
 fi
 
+# Custom function definitions.
+# You may want to put all your additions into a separate file like
+# ~/.bash_functions, instead of adding them here directly.
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+
+if [ -f ~/.bash_functions ]; then
+  . ~/.bash_functions
+fi
+
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -132,19 +133,33 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# include git aliases
+export PATH="/home/hbt/dotfiles/bin:$PATH"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"
+. "$HOME/.cargo/env"
+export YDOTOOL_SOCKET=/run/ydotoold.socket
+export PATH="$HOME/.local/bin:$PATH"
+
+eval "$(starship init bash)"
+
 # homebrew start
 export HOME_BREW_HOME="/home/linuxbrew/.linuxbrew/bin"
 export PATH="$HOME_BREW_HOME:$PATH"
 # homebrew end
 
-# vyper system wide installation
-export PATH="$PATH:/home/spryon/.local/bin"
-# end vyper system wide installation
-
 # use vi keybindings in the terminal
 set -o vi
-bind -m vi-command 'Control-l: clear-screen'
-bind -m vi-insert 'Control-l: clear-screen'
+bind '"\C-l": clear-screen'
 
 ### SET MANPAGER
 ### "nvim" as manpager
@@ -153,35 +168,6 @@ export MANPAGER="nvim +Man!"
 #set default editor to nvim
 export EDITOR=nvim
 
-eval "$(starship init bash)"
 eval "$(zoxide init bash)"
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
-. "$HOME/.cargo/env"
-
-export PATH="$PATH:/home/spryon/.foundry/bin"
-
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
-# pnpm
-export PNPM_HOME="/home/spryon/.local/share/pnpm"
-case ":$PATH:" in
-*":$PNPM_HOME:"*) ;;
-*) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
-
-# go programming language
-export GO_PATH=/usr/local/go/bin
-export GO_BIN_PATH=/home/spryon/go/bin
-export PATH=$PATH:$GO_PATH:$GO_BIN_PATH
-# go end
-
-# BunVM
-export BUNVM_DIR="/home/spryon/.bunvm"
-source "$BUNVM_DIR/bunvm.sh"
-
