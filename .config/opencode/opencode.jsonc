@@ -13,7 +13,7 @@
         "./firefox-profile/"
       ],
       "enabled": true,
-      "env": {
+      "environment": {
         "START_URL": "about:blank"
       }
     }
