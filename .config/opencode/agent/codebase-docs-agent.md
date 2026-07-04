@@ -1,0 +1,1 @@
+/run/media/hbt/work/01-better-agents-codebases/OPENCODE_ASSETS/agent/codebase-docs-agent.md

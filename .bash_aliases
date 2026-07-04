@@ -2,12 +2,12 @@
 alias gu-log="git log --graph --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%an%C(reset)%C(bold yellow)%d%C(reset) %C(dim white)- %s%C(reset)' --all"
 alias gu-last="git log -1 HEAD"
 
-alias yoao="/opt/session/session-desktop-linux.AppImage"
+alias yoao="/opt/session/session-desktop-linux.AppImage --no-sandbox"
 alias YOAO="yoao"
 alias shn="shutdown now"
 alias shr="shutdown now -r"
 alias installd="find . -maxdepth 1 -name '*.deb' | fzf | xargs -I {} -n 1 sh -c 'sudo DEBIAN_FRONTEND=noninteractive apt install -y ./{} && rm {}'"
-alias instally="find . -name '*.AppImage' | fzf | xargs -I {} -n 1 sh -c 'chmod +x {} && sudo mv {} /opt/session/session-desktop-linux.AppImage'"
+alias instally="find . -name '*.AppImage' | fzf | xargs -I {} -n 1 sh -c 'chmod +x {} && sudo mkdir -p /opt/session && sudo mv {} /opt/session/session-desktop-linux.AppImage'"
 alias winbox="/opt/WinBox_Linux/WinBox"
 alias WINBOX="winbox"
 alias wth="curl wttr.in/yaounde"
@@ -58,6 +58,7 @@ alias g_undo_h_5='git reset --hard HEAD~5'
 
 # nvim
 alias vim="nvim"
+alias v="nvim"
 alias nc='z ~/.config/nvim/ && nvim ~/.config/nvim/'
 alias ncc='nvim ~/.config/vscode.nvim/'
 alias nca='nvim ~/.bash_aliases'
@@ -75,6 +76,10 @@ alias cvinish='sudo netclient connect baf-poultry && vinish'
 
 # opencode-ai
 alias oc="opencode"
+alias ow="OPENCODE_SERVER_USERNAME=ow OPENCODE_SERVER_PASSWORD=ow_pass opencode web --port 8888"
+
+# Hunk
+alias hd="hunk diff --watch"
 
 # kitty
 alias fs="kitten @ action toggle_fullscreen"
@@ -84,3 +89,7 @@ alias sw="ssh spring@46.225.62.215"
 
 # python => python3
 alias python="python3"
+
+# bun
+alias bunlist="(cd ~/.bun/install/global && bun pm ls)"
+alias bunupdate='(cd ~/.bun/install/global && bun update)'

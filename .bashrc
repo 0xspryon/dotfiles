@@ -133,6 +133,9 @@ if ! shopt -oq posix; then
   fi
 fi
 
+export PATH=/usr/bin:$PATH
+# export DOCKER_HOST=unix:///run/user/1000/docker.sock
+
 # include git aliases
 export PATH="/home/hbt/dotfiles/bin:$PATH"
 
@@ -171,3 +174,4 @@ export EDITOR=nvim
 eval "$(zoxide init bash)"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+eval "$(zellij setup --generate-auto-start bash)"
