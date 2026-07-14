@@ -12,6 +12,10 @@ alias winbox="/opt/WinBox_Linux/WinBox"
 alias WINBOX="winbox"
 alias wth="curl wttr.in/yaounde"
 alias zero="sudo zerotier-cli"
+alias zerod1="sudo zerotier-cli leave 41d49af6c26bdac2"
+alias zerod2="sudo zerotier-cli leave b9a18a606f864980"
+alias zeroj1="sudo zerotier-cli join 41d49af6c26bdac2"
+alias zeroj2="sudo zerotier-cli join b9a18a606f864980"
 
 # Changing "ls" to "eza"
 alias ls='eza -al --color=always --group-directories-first' # my preferred listing
@@ -79,7 +83,7 @@ alias oc="opencode"
 alias ow="OPENCODE_SERVER_USERNAME=ow OPENCODE_SERVER_PASSWORD=ow_pass opencode web --port 8888"
 
 # Hunk
-alias hd="hunk diff --watch"
+alias hd="hunk diff --watch --transparent-bg --pager"
 
 # kitty
 alias fs="kitten @ action toggle_fullscreen"
