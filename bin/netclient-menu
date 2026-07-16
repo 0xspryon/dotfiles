@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+set -euo pipefail
+export PATH="$HOME/.fzf/bin:$PATH"
+
+# ---------- list renderer (also used by fzf reload) ----------
+if [ "${1:-}" = "--list" ]; then
+  sudo -n netclient list 2>/dev/null |
+    jq -r '.[] | [.network, (.connected|tostring), .ipv4_addr] | @tsv' |
+    while IFS=$'\t' read -r net conn ip; do
+      if [ "$conn" = "true" ]; then
+        printf '%-24s \033[1;32m●  connected\033[0m     \033[2m%s\033[0m\n' "$net" "$ip"
+      else
+        printf '%-24s \033[2m○  disconnected\033[0m  \033[2m%s\033[0m\n' "$net" "$ip"
+      fi
+    done
+  exit 0
+fi
+
+# ---------- outer ----------
+if [ "${1:-}" != "--inner" ]; then
+  exec kitty --class=netclient-menu --title=netclient \
+    -o hide_window_decorations=yes \
+    -o remember_window_size=no \
+    -o initial_window_width=76c \
+    -o initial_window_height=16c \
+    -o confirm_os_window_close=0 \
+    -e "$0" --inner
+fi
+
+# ---------- inner: sudo can prompt here ----------
+sudo -v # warm the timestamp before fzf needs it
+
+sel=$("$0" --list | fzf --ansi \
+  --prompt='netclient> ' \
+  --height=100% --layout=reverse --info=inline \
+  --header='enter: toggle    ctrl-r: refresh' \
+  --bind="ctrl-r:reload($0 --list)") || exit 0
+
+net=$(awk '{print $1}' <<<"$sel")
+[ -n "$net" ] || exit 0
+
+# Re-read live state; don't trust the rendered line.
+connected=$(sudo netclient list | jq -r --arg n "$net" \
+  '.[] | select(.network == $n) | .connected')
+
+case "$connected" in
+true) action=disconnect ;;
+false) action=connect ;;
+*)
+  echo "couldn't determine state for '$net'"
+  read -rsn1
+  exit 1
+  ;;
+esac
+
+printf '\n→ netclient %s %s\n\n' "$action" "$net"
+sudo netclient "$action" "$net"
+
+printf '\n'
+read -rsn1 -p "done — press any key"

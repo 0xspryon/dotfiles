@@ -1,0 +1,73 @@
+#!/usr/bin/env bash
+set -euo pipefail
+export PATH="$HOME/.fzf/bin:$PATH"
+
+store="${PASSWORD_STORE_DIR:-$HOME/.password-store}"
+cache="${XDG_CACHE_HOME:-$HOME/.cache}/pass-otp-entries"
+
+# ---------- helpers ----------
+build_cache() {
+  find "$store" -path "$store/.git" -prune -o -name '*.gpg' -printf '%P\n' |
+    sed 's/\.gpg$//' | sort |
+    while read -r e; do
+      if pass show "$e" 2>/dev/null | grep -q 'otpauth://'; then
+        printf '%s\n' "$e"
+      fi
+    done >"$cache.tmp"
+  mv "$cache.tmp" "$cache"
+  chmod 600 "$cache"
+}
+
+# ---------- preview: shows code + time left ----------
+if [ "${1:-}" = "--preview" ]; then
+  entry="$2"
+  code=$(pass otp "$entry" 2>/dev/null) || {
+    echo "  (failed to decrypt)"
+    exit 0
+  }
+  period=$(pass otp uri "$entry" 2>/dev/null | grep -oP 'period=\K[0-9]+' || true)
+  period=${period:-30}
+  left=$((period - ($(date +%s) % period)))
+  printf '\n  %s\n\n' "$entry"
+  printf '  \033[1;32m%s\033[0m\n\n' "$code"
+  printf '  \033[2mexpires in %ds\033[0m\n' "$left"
+  exit 0
+fi
+
+if [ "${1:-}" = "--refresh" ]; then
+  build_cache
+  exit 0
+fi
+
+# ---------- inner: runs inside kitty ----------
+if [ "${1:-}" = "--inner" ]; then
+  out="$2"
+  [ -s "$cache" ] || build_cache
+  fzf --prompt='otp> ' --height=100% --layout=reverse --info=inline \
+    --preview="$0 --preview {}" \
+    --preview-window='right:50%:wrap' \
+    --bind="ctrl-r:execute-silent($0 --refresh)+reload(cat '$cache')" \
+    --header='ctrl-r: rescan store' \
+    <"$cache" >"$out" || true
+  exit 0
+fi
+
+# ---------- outer ----------
+tmp=$(mktemp)
+trap 'rm -f "$tmp"' EXIT
+
+kitty --class=pass-otp --title=otp \
+  -o hide_window_decorations=yes \
+  -o remember_window_size=no \
+  -o initial_window_width=100c \
+  -o initial_window_height=20c \
+  -o confirm_os_window_close=0 \
+  -e "$0" --inner "$tmp"
+
+choice=$(cat "$tmp")
+[ -n "$choice" ] || exit 0
+
+code=$(pass otp "$choice")
+
+sleep 0.2
+printf '%s' "$code" | ydotool type --file -
