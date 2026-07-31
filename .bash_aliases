@@ -6,7 +6,7 @@ alias yoao="/opt/session/session-desktop-linux.AppImage --no-sandbox"
 alias YOAO="yoao"
 alias shn="shutdown now"
 alias shr="shutdown now -r"
-alias installd="find . -maxdepth 1 -name '*.deb' | fzf | xargs -I {} -n 1 sh -c 'sudo DEBIAN_FRONTEND=noninteractive apt install -y ./{} && rm {}'"
+alias installd="find . -maxdepth 1 -name '*.deb' | fzf -m | xargs -I {} -n 1 sh -c 'sudo DEBIAN_FRONTEND=noninteractive apt install -y ./{} && rm {}'"
 alias instally="find . -name '*.AppImage' | fzf | xargs -I {} -n 1 sh -c 'chmod +x {} && sudo mkdir -p /opt/session && sudo mv {} /opt/session/session-desktop-linux.AppImage'"
 alias winbox="/opt/WinBox_Linux/WinBox"
 alias WINBOX="winbox"
@@ -63,6 +63,7 @@ alias g_undo_h_5='git reset --hard HEAD~5'
 # nvim
 alias vim="nvim"
 alias v="nvim"
+alias v.="nvim ."
 alias nc='z ~/.config/nvim/ && nvim ~/.config/nvim/'
 alias ncc='nvim ~/.config/vscode.nvim/'
 alias nca='nvim ~/.bash_aliases'
@@ -80,7 +81,9 @@ alias cvinish='sudo netclient connect baf-poultry && vinish'
 
 # opencode-ai
 alias oc="opencode"
+alias ocb="OPENCODE_NO_PARENT_CONFIG=true OPENCODE_DISABLE_GLOBAL_CONFIG=true opencode"
 alias ow="OPENCODE_SERVER_USERNAME=ow OPENCODE_SERVER_PASSWORD=ow_pass opencode web --port 8888"
+alias owb="OPENCODE_SERVER_USERNAME=ow OPENCODE_SERVER_PASSWORD=ow_pass OPENCODE_NO_PARENT_CONFIG=true OPENCODE_DISABLE_GLOBAL_CONFIG=true opencode web --port 9999"
 
 # Hunk
 alias hd="hunk diff --watch --transparent-bg --pager"
@@ -97,3 +100,14 @@ alias python="python3"
 # bun
 alias bunlist="(cd ~/.bun/install/global && bun pm ls)"
 alias bunupdate='(cd ~/.bun/install/global && bun update)'
+alias flatpakupdate='sudo flatpak update'
+
+# Flatpak
+alias mouseless='flatpak run net.sonuscape.mouseless'
+
+alias updateall='sudo apt update && sudo apt upgrade && bunupdate && flatpakupdate'
+alias fba='firefox -P "bit-firefox-profile" --marionette --remote-debugging-port 9222'
+alias fb='firefox -P "bit-firefox-profile"'
+
+# Docker
+alias restartd="docker compose down && docker compose up"
