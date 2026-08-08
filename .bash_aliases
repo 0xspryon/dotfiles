@@ -114,3 +114,6 @@ alias fb='firefox -P "bit-firefox-profile"'
 
 # Docker
 alias restartd="docker compose down && docker compose up"
+
+alias cl-clear='read -r -n 1 -p "Clear clipboard history? [y/N] " reply; echo; [[ $reply =~ ^[Yy]$ ]] && clipcatctl clear'
+alias cl-nuke='systemctl --user restart clipcat.service'
