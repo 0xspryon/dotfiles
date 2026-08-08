@@ -102,10 +102,13 @@ alias bunlist="(cd ~/.bun/install/global && bun pm ls)"
 alias bunupdate='(cd ~/.bun/install/global && bun update)'
 alias flatpakupdate='sudo flatpak update'
 
+# fzf
+alias fzf-update="cd ~/.fzf && git pull && ./install"
+
 # Flatpak
 alias mouseless='flatpak run net.sonuscape.mouseless'
 
-alias updateall='sudo apt update && sudo apt upgrade && bunupdate && flatpakupdate && cargo install-update -a'
+alias updateall='sudo apt update && sudo apt upgrade && bunupdate && flatpakupdate && cargo install-update -a && fzf-update'
 alias fba='firefox -P "bit-firefox-profile" --marionette --remote-debugging-port 9222'
 alias fb='firefox -P "bit-firefox-profile"'
 

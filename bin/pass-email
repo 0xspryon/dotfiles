@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+set -euo pipefail
+export PATH="$HOME/.fzf/bin:$PATH"
+
+store="${PASSWORD_STORE_DIR:-$HOME/.password-store}"
+
+# ---------- inner: runs inside kitty ----------
+if [ "${1:-}" = "--inner" ]; then
+  out="$2"
+  entries=$(find "$store" -path "$store/.git" -prune -o -name '*.gpg' -printf '%P\n' |
+    sed 's/\.gpg$//' | sort)
+  printf '%s\n' "$entries" |
+    fzf --prompt='email> ' --height=100% --layout=reverse --info=inline \
+      >"$out" || true
+  exit 0
+fi
+
+# ---------- outer ----------
+tmp=$(mktemp)
+trap 'rm -f "$tmp"' EXIT
+
+kitty --class=pass-email --title=email \
+  -o hide_window_decorations=yes \
+  -o remember_window_size=no \
+  -o initial_window_width=70c \
+  -o initial_window_height=18c \
+  -o confirm_os_window_close=0 \
+  -e "$0" --inner "$tmp"
+
+choice=$(cat "$tmp")
+[ -n "$choice" ] || exit 0
+
+# Decrypt only after kitty is gone and extract the first `email:` field.
+entry=$(pass show "$choice")
+email=$(printf '%s\n' "$entry" | awk '
+  !found && /^[[:space:]]*[Ee][Mm][Aa][Ii][Ll][[:space:]]*:/ {
+    sub(/^[[:space:]]*[Ee][Mm][Aa][Ii][Ll][[:space:]]*:[[:space:]]*/, "")
+    sub(/[[:space:]]+$/, "")
+    email = $0
+    found = 1
+  }
+  END { if (found) print email }
+')
+unset entry
+
+if [ -z "$email" ]; then
+  notify-send --app-name=pass-email "Email not found" \
+    "No email: field exists in $choice"
+  exit 1
+fi
+
+sleep 0.2 # let Mutter hand focus back to the original window
+printf '%s' "$email" | ydotool type --file -
