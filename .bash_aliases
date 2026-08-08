@@ -105,7 +105,7 @@ alias flatpakupdate='sudo flatpak update'
 # Flatpak
 alias mouseless='flatpak run net.sonuscape.mouseless'
 
-alias updateall='sudo apt update && sudo apt upgrade && bunupdate && flatpakupdate'
+alias updateall='sudo apt update && sudo apt upgrade && bunupdate && flatpakupdate && cargo install-update -a'
 alias fba='firefox -P "bit-firefox-profile" --marionette --remote-debugging-port 9222'
 alias fb='firefox -P "bit-firefox-profile"'
 
