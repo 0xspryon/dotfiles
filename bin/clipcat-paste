@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+set -euo pipefail
+export PATH="$HOME/.local/bin:$HOME/.fzf/bin:$PATH"
+
+# ---------- inner: runs inside kitty ----------
+if [ "${1:-}" = "--inner" ]; then
+  out="$2"
+  clipcat-menu insert
+  printf 'selected\n' >"$out"
+  exit 0
+fi
+
+# ---------- outer ----------
+tmp=$(mktemp)
+trap 'rm -f "$tmp"' EXIT
+
+kitty --class=clipcat-paste --title=clipcat \
+  -o hide_window_decorations=yes \
+  -o remember_window_size=no \
+  -o initial_window_width=100c \
+  -o initial_window_height=20c \
+  -o confirm_os_window_close=0 \
+  -e "$0" --inner "$tmp" || true
+
+# Cancelling the selector must not paste the previously active clipboard entry.
+[ -s "$tmp" ] || exit 0
+
+sleep 0.2 # let Mutter hand focus back to the original window
+ydotool key 29:1 42:1 47:1 47:0 42:0 29:0
